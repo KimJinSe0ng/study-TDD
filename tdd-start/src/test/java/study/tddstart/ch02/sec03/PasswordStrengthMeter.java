@@ -3,14 +3,19 @@ package study.tddstart.ch02.sec03;
 public class PasswordStrengthMeter {
     public PasswordStrength meter(String s) {
         if (s == null || s.isEmpty()) return PasswordStrength.INVALID;
-        int metCount = 0;
-        if (s.length() >= 8) metCount++;
-        if (meetsContainingNumberCriteria(s)) metCount++;
-        if (meetsContainingUppercaseCriteria(s)) metCount++;
+        int metCounts = getMetCriteriaCounts(s);
 
-        if (metCount <= 1) return PasswordStrength.WEAK;
-        if (metCount == 2) return PasswordStrength.NORMAL;
+        if (metCounts <= 1) return PasswordStrength.WEAK;
+        if (metCounts == 2) return PasswordStrength.NORMAL;
         return PasswordStrength.STRONG;
+    }
+
+    private static int getMetCriteriaCounts(String s) {
+        int metCounts = 0;
+        if (s.length() >= 8) metCounts++;
+        if (meetsContainingNumberCriteria(s)) metCounts++;
+        if (meetsContainingUppercaseCriteria(s)) metCounts++;
+        return metCounts;
     }
 
     private static boolean meetsContainingUppercaseCriteria(String s) {
