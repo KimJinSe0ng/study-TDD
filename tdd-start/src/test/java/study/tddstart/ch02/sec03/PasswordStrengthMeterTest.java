@@ -16,31 +16,30 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정하기
 
+    private PasswordStrengthMeter meter = new PasswordStrengthMeter(); //중복 제거
+
+    private void assertStrength(String password, PasswordStrength expStr) { //중복 제거
+        PasswordStrength result = meter.meter(password);
+        assertEquals(expStr, result);
+    }
+
     //첫 번째 테스트: 모든 규칙을 충족하는 경우
     @Test
     void meetsAllCriteria_Then_Strong() { //암호가 모든 조건을 충족하면 암호 강도는 강함이어야 함
-        PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        PasswordStrength result = meter.meter("ab12!@AB");
-        assertEquals(PasswordStrength.STRONG, result);
-        PasswordStrength result2 = meter.meter("abc1!Add");
-        assertEquals(PasswordStrength.STRONG, result2);
+        assertStrength("ab12!@AB", PasswordStrength.STRONG);
+        assertStrength("abc1!Add", PasswordStrength.STRONG);
     }
 
     //두 번째 테스트: 길이가 8글자 미만이고 나머지 조건은 충족하는 경우
     @Test
     void meetsOtherCriteria_except_for_Length_Then_Normal() {
-        PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        PasswordStrength result = meter.meter("ab12!@A");
-        assertEquals(PasswordStrength.NORMAL, result);
-        PasswordStrength result2 = meter.meter("AB12!c");
-        assertEquals(PasswordStrength.NORMAL, result2);
+        assertStrength("ab12!@A", PasswordStrength.NORMAL);
+        assertStrength("AB12!c", PasswordStrength.NORMAL);
     }
 
     //세 번째 테스트: 숫자를 포함하지 않고 나머지 조건은 충족하는 경우
     @Test
     void meetsOtherCriteria_except_for_number_Then_Normal() {
-        PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        PasswordStrength result = meter.meter("ab!@ABqwer");
-        assertEquals(PasswordStrength.NORMAL, result);
+        assertStrength("ab!@ABqwer", PasswordStrength.NORMAL);
     }
 }
