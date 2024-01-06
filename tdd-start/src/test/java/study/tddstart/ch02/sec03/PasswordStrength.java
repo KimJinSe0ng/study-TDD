@@ -1,5 +1,5 @@
 package study.tddstart.ch02.sec03;
 
 public enum PasswordStrength {
-    NORMAL, INVALID, STRONG
+    NORMAL, INVALID, WEAK, STRONG
 }
