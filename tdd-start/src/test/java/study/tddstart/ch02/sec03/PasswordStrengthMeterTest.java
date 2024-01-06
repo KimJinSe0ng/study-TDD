@@ -42,4 +42,18 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
     void meetsOtherCriteria_except_for_number_Then_Normal() {
         assertStrength("ab!@ABqwer", PasswordStrength.NORMAL);
     }
+
+    //네 번째 테스트: 값이 없는 경우 - null
+    //null을 입력할 경우 어떻게 반응해야 할까?
+    //1. IllegalArgumentException을 발생한다. 2. 유효하지 않은 암호를 의미하는 PasswordStrength.INVALID를 리턴한다.
+    @Test
+    void nullInput_Then_Invalid() {
+        assertStrength(null,PasswordStrength.INVALID);
+    }
+
+    //네 번째 테스트: 값이 없는 경우 - 빈 문자열
+    @Test
+    void emptyInput_Then_Invalid() {
+        assertStrength("", PasswordStrength.INVALID);
+    }
 }
