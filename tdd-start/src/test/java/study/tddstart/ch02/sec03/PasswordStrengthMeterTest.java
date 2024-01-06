@@ -81,4 +81,15 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
     void meetsOnlyUpperCriteria_Then_Weak() {
         assertStrength("ABZEF", PasswordStrength.WEAK);
     }
+
+    //아홉 번째 테스트: 아무 조건도 충족하지 않은 경우
+    //기대값: WEAK, 실제값: STRONG
+    //테스트를 통과시키기 위한 방법
+    //1.충족 개수가 1개 이하인 경우 WEAK를 리턴하도록 수정
+    //2.충족 개수가 0개인 경우 WEAK를 리턴하는 코드 수정
+    //3.충족 개수가 3개인 경우 STRONG을 리턴하는 코드를 추가하고 마지막에 WEAK를 리턴하도록 코드 수정
+    @Test
+    void meetsNoCriteria_Then_Weak() {
+        assertStrength("abc", PasswordStrength.WEAK);
+    }
 }
