@@ -48,12 +48,18 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
     //1. IllegalArgumentException을 발생한다. 2. 유효하지 않은 암호를 의미하는 PasswordStrength.INVALID를 리턴한다.
     @Test
     void nullInput_Then_Invalid() {
-        assertStrength(null,PasswordStrength.INVALID);
+        assertStrength(null, PasswordStrength.INVALID);
     }
 
     //네 번째 테스트: 값이 없는 경우 - 빈 문자열
     @Test
     void emptyInput_Then_Invalid() {
         assertStrength("", PasswordStrength.INVALID);
+    }
+
+    //다섯 번째 테스트: 대문자를 포함하지 않고 나머지 조건을 충족하는 경우
+    @Test
+    void meetsOthereCriteria_except_for_Uppercase_Then_Normal() {
+        assertStrength("ab12!@df", PasswordStrength.NORMAL);
     }
 }
