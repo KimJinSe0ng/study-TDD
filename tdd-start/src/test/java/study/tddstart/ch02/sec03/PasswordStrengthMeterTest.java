@@ -35,4 +35,12 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
         PasswordStrength result2 = meter.meter("AB12!c");
         assertEquals(PasswordStrength.NORMAL, result2);
     }
+
+    //세 번째 테스트: 숫자를 포함하지 않고 나머지 조건은 충족하는 경우
+    @Test
+    void meetsOtherCriteria_except_for_number_Then_Normal() {
+        PasswordStrengthMeter meter = new PasswordStrengthMeter();
+        PasswordStrength result = meter.meter("ab!@ABqwer");
+        assertEquals(PasswordStrength.NORMAL, result);
+    }
 }
