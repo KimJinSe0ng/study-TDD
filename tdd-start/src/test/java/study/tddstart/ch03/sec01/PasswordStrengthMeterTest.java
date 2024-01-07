@@ -28,5 +28,7 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
         PasswordStrengthMeter meter = new PasswordStrengthMeter();
         PasswordStrength result = meter.meter("abcDef12");
         assertEquals(PasswordStrength.STRONG, result);
+        PasswordStrength result2 = meter.meter("aZcDef12"); //테스트 케이스를 추가할 때마다 if절을 계속 추가할 수 없다. -> 벌써부터 막힌다.
+        assertEquals(PasswordStrength.STRONG, result2);
     }
 }
