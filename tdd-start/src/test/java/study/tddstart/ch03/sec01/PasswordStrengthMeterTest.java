@@ -39,5 +39,7 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
         PasswordStrengthMeter meter = new PasswordStrengthMeter();
         PasswordStrength result = meter.meter("ab12!@A");
         assertEquals(PasswordStrength.NORMAL, result);
+        PasswordStrength result2 = meter.meter("Ab12!c");
+        assertEquals(PasswordStrength.NORMAL, result2);
     }
 }
