@@ -24,11 +24,20 @@ public class PasswordStrengthMeterTest { //1.테스트할 기능의 이름 정�
     }
 
     //2.모든 규칙을 충족하는 경우
+    @Test
     void meetsAllCreteria_Then_Weak() {
         PasswordStrengthMeter meter = new PasswordStrengthMeter();
         PasswordStrength result = meter.meter("abcDef12");
         assertEquals(PasswordStrength.STRONG, result);
         PasswordStrength result2 = meter.meter("aZcDef12"); //테스트 케이스를 추가할 때마다 if절을 계속 추가할 수 없다. -> 벌써부터 막힌다.
         assertEquals(PasswordStrength.STRONG, result2);
+    }
+
+    //정해진 값을 리턴 -> 값 비교를 이용해 정해진 값을 리턴 -> 다양한 테스트를 추가하며 구현을 일반화
+    @Test
+    void meetsOtherCreteria_except_for_Length_Then_Normal() {
+        PasswordStrengthMeter meter = new PasswordStrengthMeter();
+        PasswordStrength result = meter.meter("ab12!@A");
+        assertEquals(PasswordStrength.NORMAL, result);
     }
 }
