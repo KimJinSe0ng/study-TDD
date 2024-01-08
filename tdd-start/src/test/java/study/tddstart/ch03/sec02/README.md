@@ -19,3 +19,20 @@
 동일 조건의 예를 추가하면서 구현을 일반화해본다.
 먼저 1만원을 납부하는 예를 하나 더 추가하며, 이 예는 2019-03-01 대신 2019-05-05를 납부일로 사용한다.
 따라서 만료일은 2019-06-05이어야 한다.
+
+## 코드 정리: 중복 제거
+calculateExpiryDate() 메서드는 파라미터가 두 개이다.
+파라미터가 더 많으면 객체로 바꿔서 파라미터를 한 개로 만들겠지만 발생하지도 않은 코드를 수정할 필요는 없다.
+테스트 메서드에는 다음 형태의 중복이 존재한다.
+
+        LocalDate billingDate = 납부일;
+        int payAmount = 납부액;
+
+        ExpiryDateCalculator cal = new ExpiryDateCalculator();
+        LocalDate expiryDate = cal.calculateExpiryDate(billingDate, payAmount);
+
+        assertEquals(기댓값, expiryDate);
+
+보통은 중복을 제거하는 것이 좋지만, 테스트 코드 중복 제거에는 고민이 필요하다.
+각 테스트 메서드는 스스로 무엇을 테스트하는지 명확하게 설명할 수 있어야 하기 때문인데,
+중복을 기계적으로 제거하면 자칫 테스트 메서드가 검증하고 싶은 내용을 알아보기 힘들 수 있다.
