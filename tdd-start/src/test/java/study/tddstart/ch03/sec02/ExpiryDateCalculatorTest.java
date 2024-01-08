@@ -107,6 +107,14 @@ public class ExpiryDateCalculatorTest {
                         .build(),
                 LocalDate.of(2019, 4, 30) //4월 31일이 없는데 31일로 설정해서 예외 발생
         );
+        assertExpiryDate(
+                PayData.builder()
+                        .firstBillingDate(LocalDate.of(2019, 3, 31))
+                        .billingDate(LocalDate.of(2019, 4, 30))
+                        .payAmount(30_000)
+                        .build(),
+                LocalDate.of(2019, 7, 31) //4월 31일이 없는데 31일로 설정해서 예외 발생
+        );
     }
 
     private void assertExpiryDate(PayData payData, LocalDate expectedExpiryDate) {
