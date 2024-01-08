@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class ExpiryDateCalculatorTest {
 
     @Test
@@ -15,6 +17,14 @@ public class ExpiryDateCalculatorTest {
         ExpiryDateCalculator cal = new ExpiryDateCalculator();
         LocalDate expiryDate = cal.calculateExpiryDate(billingDate, payAmount);
 
-        Assertions.assertEquals(LocalDate.of(2019, 4, 1), expiryDate);
+        assertEquals(LocalDate.of(2019, 4, 1), expiryDate);
+
+        LocalDate billingDate2 = LocalDate.of(2019, 5, 5);
+        int payAmount2 = 10_000;
+
+        ExpiryDateCalculator cal2 = new ExpiryDateCalculator();
+        LocalDate expiryDate2 = cal.calculateExpiryDate(billingDate2, payAmount2);
+
+        assertEquals(LocalDate.of(2019, 6, 5), expiryDate2);
     }
 }
