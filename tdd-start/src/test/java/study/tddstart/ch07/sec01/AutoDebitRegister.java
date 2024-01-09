@@ -16,12 +16,12 @@ public class AutoDebitRegister {
         if (validity != CardValidity.VALID) {
             return RegisterResult.error(validity);
         }
-        AutoDebitInfo info = repository.findOne(req.getUserId());
+        AutoDebitInfo info = repository.findOne(req.getUserId()); //AutoDebitRegister는 AutoDebitInfoRepository를 사용해 자동이체 정보를 저장했다.
         if (info != null) {
             info.changeCardNumber(req.getCardNumber());
         } else {
             AutoDebitInfo newInfo = new AutoDebitInfo(req.getUserId(), req.getCardNumber(), LocalDateTime.now());
-            repository.save(newInfo);
+            repository.save(newInfo); //AutoDebitRegister는 AutoDebitInfoRepository를 사용해 자동이체 정보를 저장했다.
         }
         return RegisterResult.success();
     }
