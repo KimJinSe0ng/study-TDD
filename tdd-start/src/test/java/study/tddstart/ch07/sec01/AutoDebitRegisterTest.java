@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static study.tddstart.ch07.sec01.CardValidity.*;
+
 public class AutoDebitRegisterTest {
     private AutoDebitRegister register;
 
