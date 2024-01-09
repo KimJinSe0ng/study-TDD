@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static study.tddstart.ch07.sec01.CardValidity.INVALID;
 
 public class AutoDebitRegister_Stub_Test {
@@ -26,6 +27,16 @@ public class AutoDebitRegister_Stub_Test {
         AutoDebitReq req = new AutoDebitReq("user1", "111122223333");
         RegisterResult result = register.register(req); //유효하지 않은 카드에 대해 register()를 실행
 
-        Assertions.assertEquals(INVALID, result.getValidity());
+        assertEquals(INVALID, result.getValidity());
+    }
+
+    @Test
+    void theftCard() { //도난 카드번호에 대한 자동이체 기능 테스트
+        stubValidator.setTheftNo("1234567890123456");
+
+        AutoDebitReq req = new AutoDebitReq("user1", "1234567890123456");
+        RegisterResult result = this.register.register(req);
+
+        assertEquals(CardValidity.THEFT, result.getValidity());
     }
 }
