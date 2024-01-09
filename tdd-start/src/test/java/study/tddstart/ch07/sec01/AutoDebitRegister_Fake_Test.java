@@ -32,7 +32,7 @@ public class AutoDebitRegister_Fake_Test {
     }
 
     @Test
-    void notYetRegistered_newInfoRegistered() {
+    void notYetRegistered_newInfoRegistered() { //아직 자동이체 정보가 등록되어 있지 않을 때 새로운 정보가 올바르게 등록되는지 검사하는 메서드
         AutoDebitReq req = new AutoDebitReq("user1", "1234123412341234");
         RegisterResult result = this.register.register(req);
 
