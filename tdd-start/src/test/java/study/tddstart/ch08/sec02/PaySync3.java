@@ -10,9 +10,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PaySync {
+public class PaySync3 {
     private PayInfoDao payInfoDao = new PayInfoDao();
     private String filePath = "D:\\data\\pay\\cp0001.csv";
+
+    public PaySync3(PayInfoDao payInfoDao) { //생성자를 통해서 의존 대상을 주입하기
+        this.payInfoDao = payInfoDao;
+    }
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
