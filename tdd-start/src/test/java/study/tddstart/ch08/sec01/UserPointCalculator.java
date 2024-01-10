@@ -23,9 +23,9 @@ public class UserPointCalculator {
         LocalDate now = LocalDate.now(); //실행 시점에 따라 달라지는 결과
         int point = 0;
         if (s.isFinished(now)) { //실행 시점에 따라 달라지는 결과
-            point += p.getDefaultPoint();
+            point += p.getDefaultPoint(); //역할이 섞여있는 코드
         } else {
-            point += p.getDefaultPoint() + 10;
+            point += p.getDefaultPoint() + 10; //역할이 섞여있는 코드
         }
         if (s.getGrade() == GOLD) {
             point += 100;
