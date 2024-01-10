@@ -17,6 +17,6 @@ public class UserRegister {
         if (user != null) {
             throw new DupIdException();
         }
-        userRepository.save(new User("id", "pw", "email"));
+        userRepository.save(new User(id, pw, email));
     }
 }
