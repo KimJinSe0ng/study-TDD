@@ -13,9 +13,10 @@ public class DailyBatchLoader {
      * 이 경우 테스트 대상이 사용하는 시간이나 임의 값을 제공하는 기능을 별도로 분리해서 테스트 가능성을 높일 수 있다.
      */
     private String basePath = ".";
+    private Times times = new Times(); //오늘 일자 구하기
 
     public int load() {
-        LocalDate date = LocalDate.now(); //테스트를 실행하는 일자에 따라 값이 달라지므로 결과도 달라진다.
+        LocalDate date = times.today(); //대역 사용
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         Path batchPath = Paths.get(basePath, date.format(formatter), "batch.txt");
 
