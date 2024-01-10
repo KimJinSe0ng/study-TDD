@@ -13,6 +13,9 @@ public class UserRegister {
         if (passwordChecker.checkPasswordWeak(pw)) { //암호가 약한지 검사
             throw new WeakPasswordException();
         }
-        throw new DupIdException();
+        User user = userRepository.findById(id);
+        if (user != null) {
+            throw new DupIdException();
+        }
     }
 }
