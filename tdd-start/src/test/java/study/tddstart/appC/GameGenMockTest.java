@@ -18,4 +18,14 @@ public class GameGenMockTest {
         String num = genMock.generate(GameLevel.EASY); //given()에서 지정한 인자와 일치하므로 generate(GameLevel.EASY)는 "123"을 리턴한다.
         assertEquals("123", num);
     }
+
+    @Test
+    void mockThrowTest() {
+        GameNumGen genMock = mock(GameNumGen.class);
+        given(genMock.generate(null)).willThrow(new IllegalArgumentException()); //지정한 값을 리턴하는 대신 익셉션 발생하도록 수정
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> genMock.generate(null));
+    }
 }
