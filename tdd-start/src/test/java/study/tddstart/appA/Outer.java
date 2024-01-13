@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class Outer {
+public class Outer { //중첩 구성
 
     public Outer() {
         System.out.println("outer constructor");
