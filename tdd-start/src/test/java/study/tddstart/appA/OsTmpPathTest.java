@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OsTmpPathTest { //조건에 따른 테스트
+public class OsTmpPathTest { //조건에 따른 테스트 - 운영체제
     @Test
     @EnabledOnOs(OS.WINDOWS)
     void windowTmpPath() {
